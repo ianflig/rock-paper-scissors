@@ -1,5 +1,7 @@
 // hacer piedra papel o tijera con la compu, anotar un contador de puntos para el humano y para la computadora
 
+const playButton = document.querySelector("#play-btn");
+
 //Funcion random piedra papel o tijera
 let getComputerChoice = () => {
     let value = Math.floor(Math.random() * 3);
@@ -43,7 +45,7 @@ function playGame(rounds){
     }
 
     for (let i = 0; i<rounds; i++){
-        
+
         //Cuadro petición al usuario y mostrar resultados
         let inputUsuario = prompt(`Ronda ${i+1}: Elige piedra, papel o tijera`);
         
@@ -51,4 +53,6 @@ function playGame(rounds){
     }
 }
 
-playGame(5);
+playButton.addEventListener("click", () => {
+    playGame(5);
+});
