@@ -1,34 +1,29 @@
-// hacer piedra papel o tijera con la compu, anotar un contador de puntos para el humano y para la computadora
-
-const playButton = document.querySelector("#play-btn");
-
 //Funcion random piedra papel o tijera
 let getComputerChoice = () => {
     let value = Math.floor(Math.random() * 3);
     return (value === 0) ? "piedra"
         : (value === 1) ? "papel"
-        : "tijera";
+            : "tijera";
 };
 
-
 //Funcion jugar cantidad de rondas
-function playGame(rounds){
+function playGame(rounds) {
     let humanScore = 0;
     let computerScore = 0;
 
     //Funcion juego general
-    function gameRockPaperScissors(userChoice){
+    function gameRockPaperScissors(userChoice) {
         let computerChoice = getComputerChoice();
         userChoice = userChoice.toLowerCase();
         let result;
 
-        if (userChoice == computerChoice){
+        if (userChoice == computerChoice) {
             result = "Empate";
         } else if (
-            (userChoice == "papel" && computerChoice == "piedra") || 
+            (userChoice == "papel" && computerChoice == "piedra") ||
             (userChoice == "tijera" && computerChoice == "papel") ||
             (userChoice == "piedra" && computerChoice == "tijera")
-        ){
+        ) {
             humanScore++;
             result = "Ganaste";
         } else {
@@ -44,15 +39,13 @@ function playGame(rounds){
         `;
     }
 
-    for (let i = 0; i<rounds; i++){
+    for (let i = 0; i < rounds; i++) {
 
         //Cuadro petición al usuario y mostrar resultados
-        let inputUsuario = prompt(`Ronda ${i+1}: Elige piedra, papel o tijera`);
-        
+        let inputUsuario = prompt(`Ronda ${i + 1}: Elige piedra, papel o tijera`);
+
         alert(gameRockPaperScissors(inputUsuario));
     }
 }
 
-playButton.addEventListener("click", () => {
-    playGame(5);
-});
+/*     playGame(5); */
