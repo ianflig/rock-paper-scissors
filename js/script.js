@@ -1,3 +1,12 @@
+const rockBtn = document.querySelector("#rockBtn");
+const paperBtn = document.querySelector("#paperBtn");
+const scissorsBtn = document.querySelector("#scissorsBtn");
+
+const roundElement = document.querySelector("#round-number");
+const messageSpan = document.querySelector("#message");
+const playerScoreSpan = document.querySelector("#player-score");
+const computerScoreSpan = document.querySelector("#computer-score");
+
 //Funcion random piedra papel o tijera
 let getComputerChoice = () => {
     let value = Math.floor(Math.random() * 3);
@@ -6,46 +15,61 @@ let getComputerChoice = () => {
             : "tijera";
 };
 
-//Funcion jugar cantidad de rondas
-function playGame(rounds) {
-    let humanScore = 0;
-    let computerScore = 0;
+let humanScore = 0;
+let computerScore = 0;
+let round = 1;
 
-    //Funcion juego general
-    function gameRockPaperScissors(userChoice) {
-        let computerChoice = getComputerChoice();
-        userChoice = userChoice.toLowerCase();
-        let result;
 
-        if (userChoice == computerChoice) {
-            result = "Empate";
-        } else if (
-            (userChoice == "papel" && computerChoice == "piedra") ||
-            (userChoice == "tijera" && computerChoice == "papel") ||
-            (userChoice == "piedra" && computerChoice == "tijera")
-        ) {
-            humanScore++;
-            result = "Ganaste";
-        } else {
-            computerScore++;
-            result = "Perdiste";
-        }
+function playRound(humanChoice) {
 
-        return `${result} - La computadora eligió ${computerChoice}
-        Puntajes
+    let computerChoice = getComputerChoice();
 
-        Computadora: ${computerScore}
-        Humano: ${humanScore}
-        `;
+    let result = "";
+
+    if (humanChoice == computerChoice) {
+        result = "Empate";
+    } else if (
+        (humanChoice == "papel" && computerChoice == "piedra") ||
+        (humanChoice == "tijera" && computerChoice == "papel") ||
+        (humanChoice == "piedra" && computerChoice == "tijera")
+    ) {
+        humanScore++;
+        result = "Ganaste";
+        messageSpan.style.color = "green";
+    } else {
+        computerScore++;
+        result = "Perdiste";
+        messageSpan.style.color = "red";
     }
 
-    for (let i = 0; i < rounds; i++) {
+    playerScoreSpan.textContent = humanScore;
+    computerScoreSpan.textContent = computerScore;
+    messageSpan.textContent = `${result}! La PC eligió ${computerChoice}.`;
+    
+    round++;
+    roundElement.textContent = round;
 
-        //Cuadro petición al usuario y mostrar resultados
-        let inputUsuario = prompt(`Ronda ${i + 1}: Elige piedra, papel o tijera`);
+    checkWinner();
+}
 
-        alert(gameRockPaperScissors(inputUsuario));
+function checkWinner(){
+    if(humanScore === 5){
+        messageSpan.textContent = "¡FELICIDADES! Ganaste el juego 🏆";
+        messageSpan.style.color = "green";
+        disableButtons();
+    } else if (computerScore === 5){
+        messageSpan.textContent = "¡GAME OVER! La computadora ganó 🤖";
+        messageSpan.style.color = "red";
+        disableButtons();
     }
 }
 
-/*     playGame(5); */
+function disableButtons() {
+    rockBtn.disabled = true;
+    paperBtn.disabled = true;
+    scissorsBtn.disabled = true;
+}
+
+rockBtn.addEventListener("click", () => playRound("piedra"));
+paperBtn.addEventListener("click", () => playRound("papel"));
+scissorsBtn.addEventListener("click", () => playRound("tijera"));

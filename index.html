@@ -12,28 +12,31 @@
 
     <div class="container">
         <div class="header">
-            <div class="text-one">
-                Puntaje jugador: <span>0</span>
+             <div class="text-one">
+                Ronda <span id="round-number">1</span></p>
             </div>
-            <div class="text-two"></div>
-                Puntaje computadora: <span>0</span>
+            <div class="text-two">
+                Puntaje jugador: <span id="player-score">0</span>
+            </div>
+            <div class="text-three"></div>
+                Puntaje computadora: <span id="computer-score">0</span>
         </div>
         <div class="rock-paper-scissors">
-            <button class="rock">
+            <button class="rock" id="rockBtn">
                 <img src="images/rock-hand.svg" alt="rock-hand">
                 <span>Piedra</span>
             </button>
-            <button class="paper">
+            <button class="paper" id="paperBtn">
                 <img src="images/paper-hand.svg" alt="paper-hand">
                 <span>Papel</span>
             </button>
-            <button class="scissors">
+            <button class="scissors" id="scissorsBtn">
                 <img src="images/scissors-hand.svg" alt="scissors-hand">
                 <span>Tijera</span>
             </button>
         </div>
         <div class="mid">
-            <span>Elije una para empezar el juego</span>
+            <span id="message">Elije una para empezar el juego</span>
         </div>
         <div class="footer">
             <span>El primero en llegar a 5 gana</span>
