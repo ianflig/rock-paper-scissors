@@ -54,11 +54,11 @@ function playRound(humanChoice) {
 
 function checkWinner(){
     if(humanScore === 5){
-        messageSpan.textContent = "¡FELICIDADES! Ganaste el juego 🏆";
+        messageSpan.textContent = "GANASTE";
         messageSpan.style.color = "green";
         disableButtons();
     } else if (computerScore === 5){
-        messageSpan.textContent = "¡GAME OVER! La computadora ganó 🤖";
+        messageSpan.textContent = "PERDISTE";
         messageSpan.style.color = "red";
         disableButtons();
     }
